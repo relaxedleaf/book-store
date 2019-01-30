@@ -17,7 +17,7 @@
             // to hold the entire image, since it's floated
             &::after {
                 clear: both;
-                content:" ";
+                content: " ";
                 display: block;
             }
             img{
