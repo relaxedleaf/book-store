@@ -6,9 +6,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
-const Hello = props => (
-  <div>Hello {props.name}!</div>
-)
+const Hello = props => {
+  return (
+      <div>
+          {props.data.length} books
+      </div>
+  );
+};
 
 Hello.defaultProps = {
   name: 'David'
@@ -18,9 +22,9 @@ Hello.propTypes = {
   name: PropTypes.string
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(
-    <Hello name="React" />,
-    document.body.appendChild(document.createElement('div')),
-  )
-})
+
+document.addEventListener("DOMContentLoaded", () => {
+  const hello_react = document.querySelector("#books");
+  const data = JSON.parse(hello_react.getAttribute("data"));
+  ReactDOM.render(<Hello data={data} />, hello_react);
+});
