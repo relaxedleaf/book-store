@@ -2,12 +2,19 @@
     <aside id="notice"><%= notice %></aside>
 <% end %>
 
+<div class="container">
+    <% if flash[:index]%>
+    <div class="notice">
+        <%= flash[:index]%>
+    </div>
+    <% end %>
+</div>
+
 <h1>Your Pragmatic Catalog</h1>
 
 <ul class="catalog">
     <% @products.each do |product| %>
         <li>
-            
             <%= image_tag product.image_url_url, :style => "width: 147px; height: 176px" %>
             
             <h2><%= product.title %></h2>
@@ -16,6 +23,7 @@
             </p>
             <div class="price">
                 <%= number_to_currency(product.price) %>
+                <%= button_to 'Add to Cart', line_items_path(product_id: product)%>
             </div>
         </li>
     <% end %>
