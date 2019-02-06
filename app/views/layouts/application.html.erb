@@ -16,7 +16,8 @@
     <section class="content">
       <nav class="side_nav">
         <ul>
-          <li><%= link_to "Home", store_index_path %></li>
+          <li><%= link_to "Home", store_index_path(spa: false) %></li>            
+          <li><%= link_to "Home (SPA)", store_index_path(spa: true) %></li>
           <li><%= link_to "My Shopping Cart", cart_path(find) if !current_page?(products_path)%></li>
           <li><a href="/questions">Questions</a></li>
           <li><a href="/news">News</a></li>
