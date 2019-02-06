@@ -15,6 +15,8 @@ group :production do
     gem 'rails_12factor', '0.0.2'
 end
 
+gem 'webpacker'
+
 gem 'carrierwave'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'

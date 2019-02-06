@@ -33,6 +33,10 @@ class LineItemsController < ApplicationController
     product.update_attribute(:popularity, product.popularity)
     product.save
 
+    if session[:counter] != nil
+      session[:counter] = 0
+    end
+
     respond_to do |format|
       if @line_item.save
         format.html { redirect_to @line_item.cart, 
