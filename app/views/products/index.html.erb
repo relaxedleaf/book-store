@@ -16,7 +16,7 @@
       <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
 
         <td class="image">
-          <%= image_tag product.image_url_url, class: 'list_image', width: '100%' if product.image_url.present? %>
+          <%= image_tag product.image_url_url, style: 'width: 147px; height: 176px', class: 'list_image', width: '100%' if product.image_url.present? %>
         </td>
 
         <td class="description">

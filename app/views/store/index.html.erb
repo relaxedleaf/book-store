@@ -7,7 +7,9 @@
 <ul class="catalog">
     <% @products.each do |product| %>
         <li>
-            <%= image_tag(product.image_url_url) %>
+            
+            <%= image_tag product.image_url_url, :style => "width: 147px; height: 176px" %>
+            
             <h2><%= product.title %></h2>
             <p>
                 <%= sanitize(product.description) %>
