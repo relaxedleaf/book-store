@@ -77,10 +77,19 @@ class LineItemsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_line_item
       @line_item = LineItem.find(params[:id])
+
+      if @line_item.id != session[:line_item_id]
+        invalid_access
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def line_item_params
       params.require(:line_item).permit(:product_id)
+    end
+
+    def invalid_access
+      logger.error "Attempt to access invalid Line Item #{params[:id]}"
+      redirect_to store_index_url, notice: 'Invalid cart'
     end
 end
