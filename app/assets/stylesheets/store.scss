@@ -1,9 +1,14 @@
 // Place all the styles related to the Store controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap";
+@import "font-awesome";
 
 .store {
     max-width: 80em;
+    th.sortable {
+      cursor: pointer;
+    }
     ul.catalog {
       border-top: solid 0.250em;
       list-style: none;

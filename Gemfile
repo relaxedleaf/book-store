@@ -7,13 +7,17 @@ ruby '2.5.1'
 gem 'rails', '~> 5.2.2'
 # Use sqlite3 as the database for Active Record
 group :development do
-    gem 'sqlite3'
+    gem 'sqlite3', '~> 1.3.6'
 end
 
 group :production do
     gem 'pg', '0.18.4'
     gem 'rails_12factor', '0.0.2'
 end
+
+gem "jquery-rails"
+gem "bootstrap", "~> 4.2.1"
+gem "font-awesome-rails"
 
 gem 'webpacker'
 
