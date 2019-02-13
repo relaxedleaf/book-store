@@ -10,6 +10,13 @@ export default class Book extends React.Component {
     popularity: PropTypes.number
   };
 
+  // Add a new function to handle "Add to Cart"
+  // All it does is that it calls the handleAddToCart function
+  // in the BookList component above.
+  handleAddToCart = (e) => {   
+    this.props.handleAddToCart(this.props.book.id); 
+  };  
+
   render = () => {
     return(
       <tr className="spa_entry">
@@ -19,7 +26,13 @@ export default class Book extends React.Component {
         <td>{this.props.book.title}</td>
         <td dangerouslySetInnerHTML={{__html: this.props.book.description}}></td>
         <td>{this.props.book.price}</td>
-        <td>{Number(this.props.book.popularity)}</td>        
+        <td>{Number(this.props.book.popularity)}</td>
+        <td>
+          <a className="btn btn-success"
+            onClick={this.handleAddToCart} >
+            Add to Cart
+          </a>
+        </td>        
       </tr>
     )
   };
