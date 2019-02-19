@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root 'store#index', as: 'store_index'
-  resources :line_items
+  resources :line_items do
+    member do
+      patch "decrement"
+    end
+  end
   resources :carts
   resources :products
   get 'search', to: 'store#search'

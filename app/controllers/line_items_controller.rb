@@ -76,6 +76,21 @@ class LineItemsController < ApplicationController
     end
   end
 
+  def decrement
+    @cart = Cart.find(session[:cart_id])
+
+    product = Product.find(params[:id])
+    @line_item = @cart.delete_product(product)
+
+    product.popularity = product.popularity - 1
+    product.update_attribute(:popularity, product.popularity)
+    product.save
+
+    @line_item.save
+
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_line_item
