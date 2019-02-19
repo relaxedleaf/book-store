@@ -86,7 +86,24 @@ class LineItemsController < ApplicationController
     product.update_attribute(:popularity, product.popularity)
     product.save
 
-    @line_item.save
+    respond_to do |format|
+      if(@line_item.quantity <= 0)
+        @line_item.destroy
+        format.html { redirect_to store_index_url }
+        format.js { @current_item = @line_item }
+        format.json { redirect_to cart_path(@line_item.cart)}
+      
+      else
+        if @line_item.save
+          format.html { redirect_to store_index_url }
+          format.js { @current_item = @line_item }
+          format.json { redirect_to cart_path(@line_item.cart)}
+        else
+          format.json { render json: @line_item.errors, status: :unprocessable_entity }
+        end
+      end
+    
+    end
 
 
   end
