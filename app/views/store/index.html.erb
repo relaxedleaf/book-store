@@ -26,6 +26,8 @@
                 <%= button_to 'Add to Cart', line_items_path(product_id: product),
                     remote: true %>
             </div>
+            <br>
+            <i class="product_<%=product.id%>" style="float-right">Added to cart: <%=pluralize product.popularity.to_i, 'time'%></i>
         </li>
     <% end %>
 </ul>
