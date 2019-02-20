@@ -41,7 +41,7 @@ class LineItemsController < ApplicationController
     respond_to do |format|
       if @line_item.save
         format.html { redirect_to store_index_url }
-        format.js { @current_item = @line_item,
+        format.js { @current_item = @line_item;
                     @product = product }
         # format.json { render :show,
         #   status: :created, location: @line_item }
@@ -91,14 +91,14 @@ class LineItemsController < ApplicationController
       if(@line_item.quantity <= 0)
         @line_item.destroy
         format.html { redirect_to store_index_url }
-        format.js { @current_item = @line_item,
+        format.js { @current_item = @line_item;
                     @product = product }
         format.json { redirect_to cart_path(@line_item.cart)}
       
       else
         if @line_item.save
           format.html { redirect_to store_index_url }
-          format.js { @current_item = @line_item,
+          format.js { @current_item = @line_item;
                       @product = product }
           format.json { redirect_to cart_path(@line_item.cart)}
         else
