@@ -51,19 +51,18 @@ export default class Catalog extends React.Component {
     // Add a new function to handle "Add to Cart"
     // This function will be modified later in section 3.3.2.
     handleAddToCart = (id) => {
-
         var self = this;
         axios.defaults.headers.common['X-Requested-With'] = "XMLHttpRequest";
         axios.post('/line_items', {product_id: id})
             .then(function (response) {
                 console.log(response);
                 console.log(response.data);
+                self.refs.cart.handleAddToCart(response.data);
              })
             .catch(function (error) {
                 console.log(error);
                 alert('Cannot sort events: ', error);
         });
-        self.refs.cart.handleAddToCart(response.data);
     
      };
 
