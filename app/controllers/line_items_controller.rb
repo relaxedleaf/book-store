@@ -45,7 +45,8 @@ class LineItemsController < ApplicationController
                     @product = product }
         # format.json { render :show,
         #   status: :created, location: @line_item }
-        format.json { redirect_to cart_path(@line_item.cart)}
+        # format.json { redirect_to cart_path(@line_item.cart)}
+        format.json { }  
       else
         format.html { render :new }
         format.json { render json: @line_item.errors, status: :unprocessable_entity }
