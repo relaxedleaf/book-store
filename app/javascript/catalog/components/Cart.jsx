@@ -39,7 +39,7 @@ export default class Cart extends React.Component {
         // window.location = response.headers.location;
       })
       .catch(function (error) {
-        // console.log(error);
+         console.log(error);
         alert('Cannot remove line item: ', error);
     });
 

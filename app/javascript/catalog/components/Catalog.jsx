@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import BookList from './BookList';
 import SearchForm from './SearchForm';
+import Cart from './Cart';
 
 export default class Catalog extends React.Component {
 
@@ -52,7 +53,6 @@ export default class Catalog extends React.Component {
     handleAddToCart = (id) => {
 
         var self = this;
-    
         axios.defaults.headers.common['X-Requested-With'] = "XMLHttpRequest";
         axios.post('/line_items', {product_id: id})
             .then(function (response) {
@@ -63,6 +63,7 @@ export default class Catalog extends React.Component {
                 console.log(error);
                 alert('Cannot sort events: ', error);
         });
+        self.refs.cart.handleAddToCart(response.data);
     
      };
 
@@ -72,12 +73,15 @@ export default class Catalog extends React.Component {
                 <div className="row">
                     <SearchForm handleSearch={this.handleSearch} />
                 </div>
-              <div className="row">
-              <BookList books={this.state.books}
-                        sort ={this.state.sort}
-                        order={this.state.order}
-                        handleSortColumn={this.handleSortColumn}
-                        handleAddToCart={this.handleAddToCart}/>
+                <div className="row">
+                    <div className="col-md-12 pull-right">
+                            <Cart ref="cart" id={this.props.cart_id}/>
+                    </div>
+                    <BookList books={this.state.books}
+                                sort ={this.state.sort}
+                                order={this.state.order}
+                                handleSortColumn={this.handleSortColumn}
+                                handleAddToCart={this.handleAddToCart}/>
                 </div>
             </div>
         ); 
