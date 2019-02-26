@@ -13,6 +13,11 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
+    @sum = 0;
+    @products = @order.products
+    @products.each do |product|
+      @sum += product.price
+    end
   end
 
   # GET /orders/new
