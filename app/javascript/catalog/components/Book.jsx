@@ -26,7 +26,7 @@ export default class Book extends React.Component {
         <td>{this.props.book.title}</td>
         <td dangerouslySetInnerHTML={{__html: this.props.book.description}}></td>
         <td>{this.props.book.price}</td>
-        <td>{Number(this.props.book.popularity)}</td>
+        <td className="ajaxPopularity">{Number(this.props.book.popularity)}</td>
         <td>
           <a className="btn btn-success"
             onClick={this.handleAddToCart} >
