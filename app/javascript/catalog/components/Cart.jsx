@@ -64,6 +64,21 @@ export default class Cart extends React.Component {
 
   };
 
+  handleCheckout = () => {
+    var self = this;
+
+    axios.defaults.headers.common['X-Requested-With'] = "XMLHttpRequest";
+    axios.get('/orders/new/')
+      .then(function (response) {
+        window.location = response.data.redirect_url;
+      })
+      .catch(function (error) {
+        // console.log(error);
+        alert(error);
+    });
+
+  };
+
  handleAddToCart = (cart) => {
     // console.log(cart);
     this.setState({ id: cart.id});
@@ -82,6 +97,10 @@ export default class Cart extends React.Component {
           <a className="btn btn-success"
              onClick={this.handleEmptyCart} >
             Empty Cart
+          </a>
+          <a className="btn btn-success"
+             onClick={this.handleCheckout} >
+            Checkout
           </a>
 
         </div>
