@@ -20,6 +20,9 @@ gem "bootstrap", "~> 4.2.1"
 gem "font-awesome-rails"
 
 gem 'webpacker'
+gem 'faker'
+gem 'kaminari'
+gem 'figaro'
 
 gem 'carrierwave'
 # Use Puma as the app server

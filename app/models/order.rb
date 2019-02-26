@@ -9,11 +9,15 @@ class Order < ApplicationRecord
     # ...
     validates :name, :address, :email, presence: true
     validates :pay_type, inclusion: pay_types.keys
-
+    paginates_per 10
     def add_line_items_from_cart(cart)
       cart.line_items.each do |item|
         item.cart_id = nil
         line_items << item
       end
+    end
+
+    def total_price
+      line_items.to_a.sum { |item| item.total_price }
     end
 end
