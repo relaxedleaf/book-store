@@ -1,4 +1,6 @@
 {
-  "catalog.js": "/packs/catalog-4a280d141b3c6c8d02f4.js",
-  "catalog.js.map": "/packs/catalog-4a280d141b3c6c8d02f4.js.map"
+  "catalog.js": "/packs/catalog-7e777d31a89aa805cf01.js",
+  "catalog.js.map": "/packs/catalog-7e777d31a89aa805cf01.js.map",
+  "pay_type_selector.js": "/packs/pay_type_selector-42ae77bcb9393a037e03.js",
+  "pay_type_selector.js.map": "/packs/pay_type_selector-42ae77bcb9393a037e03.js.map"
 }
