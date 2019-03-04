@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   devise_for :accounts,  :controllers => { :registrations => 'registrations' }
+  resources :buyers, only: [:edit, :update]
+  resources :sellers, only: [:edit, :update]
   resources :orders
   root 'store#index', as: 'store_index'
   resources :line_items do
