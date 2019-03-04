@@ -1,8 +1,18 @@
 Rails.application.routes.draw do
   devise_for :accounts,  :controllers => { :registrations => 'registrations' }
   resources :buyers, only: [:edit, :update]
+
   resources :sellers, only: [:edit, :update]
   resources :orders
+
+  resources :sellers do
+      resources :products                                         # a nested route: seller_products_path
+
+      member do
+          get 'orders', to: 'line_items#show_orders_for_seller'   # a nested route: orders_seller_path
+      end
+  end
+  
   root 'store#index', as: 'store_index'
   resources :line_items do
     member do

@@ -20,9 +20,11 @@ export default class BookList extends React.Component {
 
     var self = this;
     this.props.books.forEach(function(book) {
-      books.push(<Book book={book}
-                       key={'book' + book.id}
-                       handleAddToCart={self.handleAddToCart} />);
+      books.push(<Book 
+        book={book}
+        key={'book' + book.id}
+        seller={self.props.seller}
+        handleAddToCart={self.handleAddToCart} />);
       }
     );
 
@@ -61,7 +63,9 @@ export default class BookList extends React.Component {
                 handleSortColumn={this.handleSortColumn}
               />
             </th>
-            <th scope="col">Actions</th>          
+            <th scope="col">Actions</th>
+
+            { this.props.seller ?  <th /> : <th scope="col">Actions</th> }
           </tr>
         </thead>
         <tbody>
