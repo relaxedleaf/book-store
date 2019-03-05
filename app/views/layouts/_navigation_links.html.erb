@@ -9,6 +9,7 @@
 </li>
 
 <% if account_signed_in? %>
+  <% if current_account.accountable_type != "SuperAccount"%>
     <li role="presentation" class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 Resources <span class="caret"></span>
@@ -34,6 +35,12 @@
       <%= link_to 'Account Settings', edit_account_registration_path, class: "dropdown-item"  %>
     </div>
   </li>
+  <% else %> <!-- if it is superAccount-->
+    <li class="nav-item">
+      <%= link_to 'Admin Dashboard', admin_root_path,  class:"nav-link" %>
+    </li>
+  <% end %>
+
   <li class="nav-item">
     <%= link_to 'Sign out', destroy_account_session_path, :method=>'delete', class:"nav-link" %>
   </li>
