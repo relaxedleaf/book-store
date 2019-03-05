@@ -12,6 +12,10 @@ class PayTypeSelector extends React.Component {
     this.state = { selectedPayType: null };
   }
 
+  componentDidMount = () => {
+    this.setState({ selectedPayType: this.props.pay_type ? this.props.pay_type : "" });
+  };
+
   onPayTypeSelected(event) {
     this.setState({ selectedPayType: event.target.value });
   }
@@ -29,8 +33,8 @@ class PayTypeSelector extends React.Component {
       <div>
         <div className="field">
           <label htmlFor="order_pay_type">Pay type</label>
-          <select id="pay_type" onChange={this.onPayTypeSelected} 
-            name="order[pay_type]">
+          <select id="pay_type" onChange={this.onPayTypeSelected}  
+            name="order[pay_type]" value={this.state.selectedPayType}>
             <option value="">Select a payment method</option>
             <option value="Check">Check</option>
             <option value="Credit card">Credit card</option>

@@ -12,7 +12,11 @@ Rails.application.routes.draw do
           get 'orders', to: 'line_items#show_orders_for_seller'   # a nested route: orders_seller_path
       end
   end
-  
+
+  resources :buyers do
+    resources :orders                       # a nested route: buyer_orders_path
+  end
+
   root 'store#index', as: 'store_index'
   resources :line_items do
     member do

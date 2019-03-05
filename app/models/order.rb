@@ -1,4 +1,5 @@
 class Order < ApplicationRecord
+    belongs_to :buyer, optional: true
     enum pay_type: {
       "Check"          => 0, 
       "Credit card"    => 1, 
