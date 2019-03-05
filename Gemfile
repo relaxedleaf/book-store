@@ -26,6 +26,7 @@ gem 'figaro'
 
 gem 'devise'
 gem 'simple_form'
+gem 'pundit'
 
 gem 'carrierwave'
 # Use Puma as the app server
