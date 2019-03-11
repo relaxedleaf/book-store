@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  skip_before_action :verify_authenticity_token
   include CurrentCart
   before_action :set_cart, only: [:new, :create]
   before_action :ensure_cart_isnt_empty, only: [:new, :create]
@@ -124,9 +125,13 @@ class OrdersController < ApplicationController
 
     def ensure_cart_isnt_empty
       if @cart.line_items.empty?
-        redirect_to store_index_url, notice: 'Your cart is empty'
+        respond_to do |format|
+          format.html { redirect_to store_index_url, notice: "Your cart is empty. Can't place order." }
+          format.json { render json: {form: "Your cart is empty. Can't place order."}, status: :unprocessable_entity }
+        end
       end
     end
+
 
     def invalid_order
       logger.error "Attempt to access invalid order #{params[:id]}"
