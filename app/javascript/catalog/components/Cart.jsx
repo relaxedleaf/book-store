@@ -65,20 +65,20 @@ export default class Cart extends React.Component {
 
   };
 
-  handleCheckout = () => {
-    var self = this;
+  // handleCheckout = () => {
+  //   var self = this;
 
-    axios.defaults.headers.common['X-Requested-With'] = "XMLHttpRequest";
-    axios.get('/orders/new/')
-      .then(function (response) {
-        window.location = response.data.redirect_url;
-      })
-      .catch(function (error) {
-        // console.log(error);
-        alert(error);
-    });
+  //   axios.defaults.headers.common['X-Requested-With'] = "XMLHttpRequest";
+  //   axios.get('/orders/new/')
+  //     .then(function (response) {
+  //       window.location = response.data.redirect_url;
+  //     })
+  //     .catch(function (error) {
+  //       // console.log(error);
+  //       alert(error);
+  //   });
 
-  };
+  // };
 
  handleAddToCart = (cart) => {
     // console.log(cart);
@@ -87,26 +87,39 @@ export default class Cart extends React.Component {
     this.setState({ line_items: cart.line_items});
   };
 
- render = () => {
+  render = () => {
     if (this.state.total_price != 0) {
+
+      var buttons = (this.props.url != "/order_form") ?
+      (
+        <div>
+          <a className="btn btn-success" 
+             onClick={this.handleEmptyCart} >
+             Empty Cart
+          </a>
+          &nbsp;
+          <Link className="btn btn-success" to={{pathname:"/order_form"}}>
+              Checkout
+          </Link>
+        </div>
+      )
+      :
+      (
+         <a className="btn btn-success"
+            onClick={this.handleEmptyCart} >
+          Empty Cart
+         </a>
+      )    
+
       return(
         <div className="spa_cart">
           <h2>Your Cart</h2>
+
           <LineItems total_price={this.state.total_price}
                      line_items={this.state.line_items} 
                      handleRemoveFromCart={this.handleRemoveFromCart} />
-          <a className="btn btn-success"
-             onClick={this.handleEmptyCart} >
-            Empty Cart
-          </a>
-          {/* <a className="btn btn-success"
-             onClick={this.handleCheckout} >
-            Checkout
-          </a> */}
-         <Link className="btn btn-success" to={{pathname:"/order_form"}}>
-              Checkout
-          </Link>
 
+          {buttons}
         </div>
       )
     }
