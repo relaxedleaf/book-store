@@ -19,6 +19,12 @@ class StoreController < ApplicationController
       format.html {
           if (params[:spa] && params[:spa] == "true")
               @spa = true
+              if current_account && current_account.accountable_type == "Buyer"
+                @buyerName     = current_account.accountable.name
+                @buyerAddress  = current_account.accountable.address
+                @buyerEmail  = current_account.email
+                @buyer_pay_type = current_account.accountable.pay_type.to_i
+              end
               render 'index_spa'
           # the else case below is by default
           else

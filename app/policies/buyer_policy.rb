@@ -11,7 +11,7 @@ class BuyerPolicy
     end
   
     def update?
-      @current_account == @seller.account
+      @current_account == @buyer.account
     end
   
   end

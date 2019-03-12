@@ -7,11 +7,20 @@ export default class Cart extends React.Component {
   state = {
     id: 0,
     line_items: [], 
-    total_price: 0
+    total_price: 0,
+    buyerName: "",
+    buyerAddress: "",
+    buyerEmail: "",
+    buyer_pay_type: ""
   };
 
  componentDidMount = () => {
     var self = this;
+    self.setState({buyerName: this.props.buyerName});
+    self.setState({buyerAddress: this.props.buyerAddress});
+    self.setState({buyerEmail: this.props.buyerEmail});
+    self.setState({buyer_pay_type: this.props.buyer_pay_type});
+
 
     axios.defaults.headers.common['X-Requested-With'] = "XMLHttpRequest";
     axios.get('/carts/'+this.props.id)
@@ -85,6 +94,7 @@ export default class Cart extends React.Component {
     this.setState({ id: cart.id});
     this.setState({ total_price: cart.total_price});
     this.setState({ line_items: cart.line_items});
+    console.log(this.state.buyer_pay_type);
   };
 
   render = () => {
@@ -98,7 +108,9 @@ export default class Cart extends React.Component {
              Empty Cart
           </a>
           &nbsp;
-          <Link className="btn btn-success" to={{pathname:"/order_form", true_cart_id: this.state.id}}>
+          <Link className="btn btn-success" to={{pathname:"/order_form", true_cart_id: this.state.id,
+                                                 buyerName: this.state.buyerName, buyerAddress: this.state.buyerAddress,
+                                                 buyer_pay_type: this.state.buyer_pay_type}}>
               Checkout
           </Link>
         </div>

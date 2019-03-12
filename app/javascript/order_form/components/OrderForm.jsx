@@ -99,9 +99,9 @@ export default class OrderForm extends React.Component {
                                 "form-control form-control-lg",
                                 { "is-invalid": errors.name }
                             )}
-                               placeholder="Name"
+                               placeholder= "Name"
                             name="name"
-                            value={this.state.name}
+                            value={this.props.buyerName}
                             onChange={this.onInputChange}
                         />
                         {errors.name && (
@@ -117,9 +117,9 @@ export default class OrderForm extends React.Component {
                                 "form-control form-control-lg",
                                 { "is-invalid": errors.address }
                             )}
-                            placeholder="Address"
+                            placeholder= "Address"
                             name="address"
-                            value={this.state.address}
+                            value={this.props.buyerAddress}
                             onChange={this.onInputChange}
                         />
                         {errors.address && (
@@ -138,9 +138,9 @@ export default class OrderForm extends React.Component {
                                         errors.email
                                 }
                             )}
-                            placeholder="Email"
+                            placeholder= "Email"
                             name="email"
-                            value={this.state.email}
+                            value={this.props.buyerEmail}
                             onChange={this.onInputChange}
                         />
                         {errors.email && (
@@ -152,7 +152,7 @@ export default class OrderForm extends React.Component {
 
                     <div className="form-group">
                     <div>
-                        <PayTypeSelector handleSelectPayType={this.handleSelectPayType} />
+                        <PayTypeSelector handleSelectPayType={this.handleSelectPayType} pay_type={this.props.buyer_pay_type}/>
                     </div>
                         {errors.pay_type && (
                             <div className="invalid-feedback" style={{display: "block"}}>

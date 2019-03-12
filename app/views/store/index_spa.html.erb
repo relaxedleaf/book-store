@@ -7,13 +7,28 @@
             id: "catalog",
             seller: true,
             cart_id: @cart.id  do %>
-    <%= javascript_pack_tag 'catalog' %>
+        <%= javascript_pack_tag 'catalog' %>
     <% end %>
 <%else %>
-    <%= content_tag :div,
-      id: "catalog",
-      seller: false,
-      cart_id: @cart.id  do %>
-    <%= javascript_pack_tag 'catalog' %>
+    <% if account_signed_in? and ( current_account.accountable_type == "Buyer")%>
+        <%= content_tag :div,
+                id: "catalog",
+                seller: false,
+                buyer: true,
+                buyerName: @buyerName,
+                buyerAddress: @buyerAddress,
+                buyerEmail: @buyerEmail,
+                buyer_pay_type: @buyer_pay_type,
+                cart_id: @cart.id  do %>
+        <%= javascript_pack_tag 'catalog' %>
+        <% end %>
+
+    <% else %>
+        <%= content_tag :div,
+        id: "catalog",
+        seller: false,
+        cart_id: @cart.id  do %>
+        <%= javascript_pack_tag 'catalog' %>
+        <% end %>
     <% end %>
 <% end %>
